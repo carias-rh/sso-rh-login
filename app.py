@@ -17,16 +17,14 @@ def index():
 
 @app.route('/get_otp')
 def get_otp():
-    # Increment the counter in the "counter" file
-    with open('counter', 'r+') as f:
-        counter = int(f.read()) + 1
-        f.seek(0)
-        f.write(str(counter))
 
     # Execute the command and retrieve the OTP
-    counter = str(os.popen("cat ./counter").read())
+    counter = str(os.popen("cat ./counter").read()).replace('\n', '')
     process = subprocess.Popen(['oathtool', '--hotp', secret, '-c', counter ], stdout=subprocess.PIPE)
     output, error = process.communicate()
+
+    counter = int(counter) + 1
+    os.popen("echo " + str(counter) + " > ./counter")
 
     return output
 
