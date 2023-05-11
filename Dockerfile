@@ -19,4 +19,4 @@ COPY templates templates/
 EXPOSE 5000
 
 # Set the entrypoint command to run the Flask application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+CMD ["python", "app.py"]
