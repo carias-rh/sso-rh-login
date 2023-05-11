@@ -9,7 +9,7 @@ ENV SECRET ''
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN apt-get install oathtool -y
+RUN apt-get update && apt-get install oathtool -y
 
 # Copy the application files to the container
 COPY app.py .
