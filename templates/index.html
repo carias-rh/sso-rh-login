@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .otp {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>OTP Viewer</h1>
+<button onclick="getOTP()">Get OTP</button>
+<div class="otp" id="otp"></div>
+
+<script>
+    function getOTP() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/get_otp', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById('otp').innerHTML = xhr.responseText;
+            }
+        };
+        xhr.send();
+    }
+</script>
+</body>
+</html>
