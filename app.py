@@ -9,7 +9,7 @@ import subprocess
 
 app = Flask(__name__)
 
-secret = os.getenv('SECRET', default=None)
+secret = str(os.getenv('SECRET'))
 
 @app.route('/')
 def index():
