@@ -20,13 +20,12 @@ def get_otp():
 
     # Execute the command and retrieve the OTP
     counter = str(os.popen("cat ./counter").read()).replace('\n', '')
-    process = subprocess.Popen(['oathtool', '--hotp', secret, '-c', counter ], stdout=subprocess.PIPE)
-    output, error = process.communicate()
+    otp_code = str(os.popen("oathtool --hotp " + secret + " -c " + counter).read()).replace('\n', '')
 
     counter = int(counter) + 1
     os.popen("echo " + str(counter) + " > ./counter")
 
-    return output
+    return otp_code
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':

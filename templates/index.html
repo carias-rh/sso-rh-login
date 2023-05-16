@@ -53,10 +53,21 @@
        xhr.open('GET', '/get_otp', true);
        xhr.onreadystatechange = function() {
            if (xhr.readyState === 4 && xhr.status === 200) {
-               document.getElementById('otp').innerHTML = xhr.responseText;
+               var otpCode = xhr.responseText
+               document.getElementById('otp').innerHTML = otpCode;
+               copyToClipboard(otpCode);
            }
        };
        xhr.send();
+   }
+
+   function copyToClipboard(text) {
+       var dummyTextArea = document.createElement("textarea");
+       document.body.appendChild(dummyTextArea);
+       dummyTextArea.value = text;
+       dummyTextArea.select();
+       document.execCommand("copy");
+       document.body.removeChild(dummyTextArea);
    }
 </script>
 </body>
