@@ -19,11 +19,11 @@ def index():
 def get_otp():
 
     # Execute the command and retrieve the OTP
-    counter = str(os.popen("cat ./counter").read()).replace('\n', '')
+    counter = str(os.popen("cat /var/log/counter").read()).replace('\n', '')
     otp_code = str(os.popen("oathtool --hotp " + secret + " -c " + counter).read()).replace('\n', '')
 
     counter = int(counter) + 1
-    os.popen("echo " + str(counter) + " > ./counter")
+    os.popen("echo " + str(counter) + " > /var/log/counter")
 
     return otp_code
 
