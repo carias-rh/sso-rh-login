@@ -1,4 +1,4 @@
-# OTP generator for SSO Red Hat Login
+# OTP token generator for SSO Red Hat Login
 This application runs a very simple command to generate the OTP token, but I wanted to have it isolated, so that several applications could use it as a service, so that I could "spend" only one token slot in the token.redhat.com site, which allows a maximum of 4 different tokens.
 
 `$ oathtool --hotp $SECRET -c $COUNTER`
